@@ -23,3 +23,5 @@ def config_section_map(section):
 
 
 twitter_config = config_section_map("TWITTER-CONFIGURATION")
+
+logging_config = config_section_map("LOGGING-CONFIGURATION")
