@@ -1,0 +1,47 @@
+[2019-01-28 10:40:56,997] {logging_mixin.py:95} INFO - Sending to executor.
+[2019-01-28 10:40:56,998] {logging_mixin.py:95} INFO - [2019-01-28 10:40:56,998] {base_executor.py:56} INFO - Adding to queue: airflow run example_bash_operator runme_0 2015-01-01T00:00:00+00:00 --local -sd DAGS_FOLDER/example_dags/example_bash_operator.py
+[2019-01-28 10:40:57,001] {logging_mixin.py:95} INFO - [2019-01-28 10:40:57,001] {sequential_executor.py:45} INFO - Executing command: airflow run example_bash_operator runme_0 2015-01-01T00:00:00+00:00 --local -sd DAGS_FOLDER/example_dags/example_bash_operator.py
+[2019-01-28 10:40:57,850] {models.py:1359} INFO - Dependencies all met for <TaskInstance: example_bash_operator.runme_0 2015-01-01T00:00:00+00:00 [None]>
+[2019-01-28 10:40:57,852] {models.py:1359} INFO - Dependencies all met for <TaskInstance: example_bash_operator.runme_0 2015-01-01T00:00:00+00:00 [None]>
+[2019-01-28 10:40:57,852] {models.py:1571} INFO - 
+--------------------------------------------------------------------------------
+Starting attempt 1 of 1
+--------------------------------------------------------------------------------
+
+[2019-01-28 10:40:57,859] {models.py:1593} INFO - Executing <Task(BashOperator): runme_0> on 2015-01-01T00:00:00+00:00
+[2019-01-28 10:40:57,859] {base_task_runner.py:118} INFO - Running: ['bash', '-c', 'airflow run example_bash_operator runme_0 2015-01-01T00:00:00+00:00 --job_id 2 --raw -sd DAGS_FOLDER/example_dags/example_bash_operator.py --cfg_path /var/folders/23/d2krr7cs7n730y757t7b16280000gn/T/tmppvbn4lhp']
+[2019-01-28 10:40:58,420] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0 [2019-01-28 10:40:58,420] {__init__.py:51} INFO - Using executor SequentialExecutor
+[2019-01-28 10:40:58,606] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0 [2019-01-28 10:40:58,606] {models.py:273} INFO - Filling up the DagBag from /Users/lanceli/airflow/dags/example_dags/example_bash_operator.py
+[2019-01-28 10:40:58,626] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0 [2019-01-28 10:40:58,625] {models.py:377} ERROR - Failed to import: /Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_http_operator.py
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0 Traceback (most recent call last):
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/models.py", line 374, in process_file
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0     m = imp.load_source(mod_name, filepath)
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "/Users/lanceli/airflow/airflow_env/lib/python3.7/imp.py", line 171, in load_source
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0     module = _load(spec)
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "<frozen importlib._bootstrap>", line 696, in _load
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_http_operator.py", line 27, in <module>
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0     from airflow.operators.http_operator import SimpleHttpOperator
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/operators/http_operator.py", line 21, in <module>
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0     from airflow.hooks.http_hook import HttpHook
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/hooks/http_hook.py", line 23, in <module>
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0     import tenacity
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0   File "/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/tenacity/__init__.py", line 352
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0     from tenacity.async import AsyncRetrying
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0                       ^
+[2019-01-28 10:40:58,627] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0 SyntaxError: invalid syntax
+[2019-01-28 10:40:58,664] {base_task_runner.py:101} INFO - Job 2: Subtask runme_0 [2019-01-28 10:40:58,664] {cli.py:520} INFO - Running <TaskInstance: example_bash_operator.runme_0 2015-01-01T00:00:00+00:00 [running]> on host Lances-MacBook-Pro.local
+[2019-01-28 10:40:58,681] {bash_operator.py:77} INFO - Tmp dir root location: 
+ /var/folders/23/d2krr7cs7n730y757t7b16280000gn/T
+[2019-01-28 10:40:58,681] {bash_operator.py:86} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_ID=example_bash_operator
+AIRFLOW_CTX_TASK_ID=runme_0
+AIRFLOW_CTX_EXECUTION_DATE=2015-01-01T00:00:00+00:00
+[2019-01-28 10:40:58,682] {bash_operator.py:100} INFO - Temporary script location: /var/folders/23/d2krr7cs7n730y757t7b16280000gn/T/airflowtmpncaw62e5/runme_05pxu4axs
+[2019-01-28 10:40:58,682] {bash_operator.py:110} INFO - Running command: echo "example_bash_operator__runme_0__20150101" && sleep 1
+[2019-01-28 10:40:58,688] {bash_operator.py:119} INFO - Output:
+[2019-01-28 10:40:58,692] {bash_operator.py:123} INFO - example_bash_operator__runme_0__20150101
+[2019-01-28 10:40:59,702] {bash_operator.py:127} INFO - Command exited with return code 0
+[2019-01-28 10:41:02,856] {logging_mixin.py:95} INFO - [2019-01-28 10:41:02,855] {jobs.py:2527} INFO - Task exited with return code 0

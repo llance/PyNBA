@@ -1,0 +1,5 @@
+[2019-01-28 10:46:03,479] {logging_mixin.py:95} INFO - Sending to executor.
+[2019-01-28 10:46:03,479] {logging_mixin.py:95} INFO - [2019-01-28 10:46:03,479] {base_executor.py:56} INFO - Adding to queue: airflow run example_bash_operator runme_0 2015-01-01T00:00:00+00:00 --local -sd DAGS_FOLDER/example_dags/example_bash_operator.py
+[2019-01-28 10:46:03,483] {logging_mixin.py:95} INFO - [2019-01-28 10:46:03,483] {sequential_executor.py:45} INFO - Executing command: airflow run example_bash_operator runme_0 2015-01-01T00:00:00+00:00 --local -sd DAGS_FOLDER/example_dags/example_bash_operator.py
+[2019-01-28 10:46:04,317] {models.py:1353} INFO - Dependencies not met for <TaskInstance: example_bash_operator.runme_0 2015-01-01T00:00:00+00:00 [success]>, dependency 'Task Instance State' FAILED: Task is in the 'success' state which is not a valid state for execution. The task must be cleared in order to be run.
+[2019-01-28 10:46:04,318] {logging_mixin.py:95} INFO - [2019-01-28 10:46:04,318] {jobs.py:2514} INFO - Task is not able to be run
