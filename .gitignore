@@ -1,3 +1,5 @@
 airflow/
 airflow_env/
 nba_api/
+
+.DS_Store
