@@ -44,7 +44,7 @@ class ShotChartDetail(Base):
     __tablename__ = 'shotchartdetail'
 
     __table_args__ = (
-        PrimaryKeyConstraint('game_id', 'player_id', 'period', 'minutes_remaining', 'seconds_remaining'),
+        PrimaryKeyConstraint('game_id', 'player_id', 'period', 'minutes_remaining', 'seconds_remaining', 'event_type', 'action_type', 'shot_type'),
     )
 
     grid_type = Column(String)

@@ -55,7 +55,7 @@ def load_roster(rosters, db, upload_date):
 def load_shotchartdetail(shotchartdetails, db, upload_date):
     try:
         for shotchart in shotchartdetails['resultSets'][0]['rowSet']:
-            # print('shotchart is :%s' %(shotchart))
+            print('shotchart is :%s' %(shotchart))
             shotchartobj = ShotChartDetail(
                 grid_type = shotchart[0],
                 game_id = shotchart[1],
