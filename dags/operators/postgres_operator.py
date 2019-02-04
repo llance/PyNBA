@@ -47,7 +47,9 @@ class PostgresOperator(BaseOperator):
     def execute(self):
         # PlayerCareerStats
         with self.db_session() as db:
-            all_team_roster = db.execute("SELECT * FROM nba_api.roster")
+            all_team_roster = db.execute("SELECT * FROM nba_api.roster WHERE playerid NOT IN (SELECT DISTINCT player_id FROM nba_api.playercareerstats)")
+            # loaded_playercareerstats = db.execute("SELECT DISTINCT player_id FROM nba_api.playercareerstats")
+        # print(loaded_playercareerstats.keys())
 
         for roster in all_team_roster:
             #player_id

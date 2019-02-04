@@ -95,9 +95,6 @@ def load_shotchartdetail(shotchartdetails, db, upload_date):
 
 def load_playercareerstats(playerstats, db, upload_date):
     try:
-        loaded_playercareerstats = db.execute("SELECT * FROM nba_api.playercareerstats")
-
-
         for ps in playerstats:
             # print('shotchart is :%s' %(shotchart))
             playerstatobj = PlayerCareerStats(
