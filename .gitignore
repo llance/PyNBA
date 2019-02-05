@@ -5,3 +5,5 @@ nba_api/
 .DS_Store
 
 **/*.log
+
+pynba_backend/.idea
