@@ -1,14 +1,8 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from nba_app.models import Player
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'groups')
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ('url', 'name')
+        model = Player
+        fields = ('teamid', 'season', 'leagueid', 'num', 'position', 'height', 'weight', 'birth_date', 'age', 'school', 'player', 'playerid', 'exp')
