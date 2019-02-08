@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from rest_framework import routers
 
 from nba_app import views
@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('players/', views.PlayersList.as_view(), name='player-list'),
+    re_path('playershotchart/(?P<player_id>\d+)/$', views.ShotChartList.as_view(), name='player-shotchart'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
