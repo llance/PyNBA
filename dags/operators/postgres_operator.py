@@ -35,7 +35,7 @@ class PostgresOperator(BaseOperator):
         # print('all_teams : %s' %(all_teams))
 
         # with self.db_session() as db:
-            # load_team(all_teams, db, '{{(execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%dT00:00:00.000")}}')
+        # load_team(all_teams, db, '{{(execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%dT00:00:00.000")}}')
 
         #     all_team_roster_list = []
         #     for team in all_teams:
@@ -43,7 +43,7 @@ class PostgresOperator(BaseOperator):
         #         team_roster = commonteamroster.CommonTeamRoster(season='2018-19', team_id=team['id'])
         #         with self.db_session() as db:
         #             load_roster(team_roster.get_dict(), db, '{{(execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%dT00:00:00.000")}}')
-        
+
     # def execute(self):
     #     # PlayerCareerStats
     #     with self.db_session() as db:
@@ -59,27 +59,29 @@ class PostgresOperator(BaseOperator):
     #         # print('playerstats is %s' %(playerstats.get_dict()['resultSets'][0]['rowSet']))
     #         with self.db_session() as db:
     #             load_playercareerstats(playerstats.get_dict()['resultSets'][0]['rowSet'], db, '{{(execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%dT00:00:00.000")}}')
-        
-    def execute(self):
 
+    def execute(self)
         try:
             with self.db_session() as db:
-                player_team_by_season = db.execute("SELECT * FROM nba_api.playercareerstats")
+                player_team_by_season = db.execute("SELECT * FROM nba_api.playercareerstats WHERE player_id NOT IN (SELECT DISTINCT player_id FROM" +
+                                                   " nba_api.shotchartdetail)")
 
             for player in player_team_by_season:
-                # print(roster)      
+                # sleep minimum 3 seconds to avoid stats.nba.com endpoint blocking my ip for ddos
                 time.sleep(3)
-                print("getting %s's stats for season : %s" %(player[0], player[1]))
+
+                print("getting %s's stats for season : %s" %
+                      (player[0], player[1]))
 
                 player_shot_chart = shotchartdetail.ShotChartDetail(team_id=player[3],
                                                                     player_id=player[0],
-                                                                    context_measure_simple='FGA',
+                                                                    context_measure_simple='FGA',  # FGA field goal attempted tracks all shots
                                                                     season_nullable=player[1])
                 shot_chart = player_shot_chart.get_dict()
-                # print("%s's stats for season : %s is : %s" %(player[0], player[1], shot_chart))
 
                 with self.db_session() as db:
-                   load_shotchartdetail(shot_chart, db, '{{(execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%dT00:00:00.000")}}')
-                    
+                    load_shotchartdetail(
+                        shot_chart, db, '{{(execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%dT00:00:00.000")}}')
+
         except Exception as e:
-            print('exception in PostgresOperator.execute is %s' %(e))
+            print('exception in PostgresOperator.execute is %s' % (e))
