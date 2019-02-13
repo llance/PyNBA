@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import axios from 'axios'
+import d3 from './js/d3.js'
 
-const queryString = require('query-string');
 
 class App extends Component {
+    constructor(props) {
+        super(props)
+        this.handleClick = this.handleClick.bind(this)
+        var courtSelection = d3.select("#shot-chart");
+        var court = d3.court().width(600);
+        var shots = d3.shots().shotRenderThreshold(1).displayToolTips(true).displayType("hexbin");
+        courtSelection.call(court);
+        courtSelection.datum(data).call(shots);
+    }
+
+
     render () {
         return (
             <div className='button__container'>
                 <button className='button' onClick={this.handleClick}>
                     Click Me
                 </button>
-                <p>{this.state.username}</p>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
+                <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+                <script src="d3-shotchart.js" ></script>
+                <script src="shots.js" ></script>
+
             </div>
+
         )
     }
 
@@ -37,14 +53,6 @@ class App extends Component {
         };
         xhr.send(null);
     }
-
-    constructor () {
-        super()
-        this.state = {
-            username: ''
-        }
-        this.handleClick = this.handleClick.bind(this)
-    };
 
 
     handleClick () {

@@ -1,0 +1,171 @@
+@import '../../../css/flexbox.scss';
+
+.querybuilder {
+  @include flexbox;
+  @include flex(0 0 60px);
+  @include flex-flow(row);
+
+  border: 1px solid #dfdfdf;
+  background-color: white;
+  margin-bottom: 10px;
+
+  .querybuilder-type-spec {
+    @include flexbox;
+    @include flex(1 1 auto);
+    position: relative;
+
+    &.row {
+      @include flex-flow(row);
+    }
+
+    &.col {
+      @include flex-flow(column);
+    }
+  }
+
+  .querybuilder-type-spec.row .querybuilder-shelf {
+    @include flex-flow(column);
+
+    &:not(:last-of-type) {
+      border-right: 1px solid #dfdfdf;
+    }
+
+    label {
+      display: block;
+      padding: 1px 3px 0px;
+    }
+  }
+
+  .querybuilder-type-spec.row.key .querybuilder-shelf {
+    &:first-of-type {
+      @include flex(0 0 auto);
+    }
+
+    label {
+      width: 150px;
+    }
+  }
+
+  .querybuilder-type-spec.col .querybuilder-shelf {
+    @include flex-flow(row);
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #dfdfdf;
+    }
+
+    label {
+      padding: 1px 3px 0px;
+      border-right: 1px solid #dfdfdf;
+      background-color: #efefef;
+
+      @include flexbox;
+      @include flex(0 0 80px);
+      @include align-items(center);
+    }
+  }
+}
+
+.querybuilder-field-settings {
+  position: absolute;
+  top: 25px; left: 88px;
+  top: 55px;
+  background-color: white;
+  border: 1px solid #dfdfdf;
+  border-radius: 2px;
+  border-top-left-radius: 0px;
+  box-shadow: 0 3px 5px #ccc;
+  padding: 5px;
+  z-index: 10;
+  width: 200px;
+
+  &.querybuilder-property-settings {
+    top: 20px;
+    left: 0px;
+    right: 0px;
+    width: auto;
+    border-top-left-radius: 2px;
+  }
+
+  .querybuilder-field-options > label {
+    font-weight: 600;
+
+    a {
+      padding-left: 8px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+  }
+
+  i.fa.fa-times.remove-link {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 1;
+  }
+
+  .querybuilder-field-remove {
+    color: #f18794;
+    border-top: 1px solid #dfdfdf;
+    margin: 0 -5px -5px;
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: #f18794;
+      color: white;
+    }
+  }
+
+  .querybuilder-func .querybuilder-field-settings-option-value {
+    width: 50%;
+  }
+
+  .querybuilder-field-settings-options {
+    @include flexbox;
+    @include flex-flow(row wrap);
+    margin-bottom: 0.5rem;
+
+    .querybuilder-field-settings-option-value {
+      @include flex(1 0 auto);
+    }
+  }
+}
+
+.querybuilder-property-settings {
+  .querybuilder-color-static span {
+    padding-right: 10px;
+  }
+
+  .querybuilder-color-settings, .querybuilder-color-sub-settings {
+    @include flexbox;
+    @include flex-flow(row wrap);
+    @include flex-just(flex-start);
+
+    input[type=checkbox] {
+      margin-bottom: 6px;
+      margin-right: 6px;
+    }
+  }
+
+  .querybuilder-color-sub-settings {
+    padding-left: 20px;
+
+    &.querybuilder-color-sub-settings-input span {
+      @include flex(0 0 35px);
+    }
+  }
+
+  .querybuilder-color-settings label {
+    @include flex(1 0 60px);
+  }
+
+  .querybuilder-color-settings label div {
+    margin: 5px 0;
+    height: 24px;
+
+    svg {
+      width: 40px;
+      height: 24px;
+    }
+  }
+}

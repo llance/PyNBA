@@ -1,0 +1,59 @@
+@import '../../../css/utilities.scss';
+.graphic-container {
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dfdfdf;
+  border-radius: 1px;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  z-index: 2;
+
+  .loading-overlay-background {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-color: #fff;
+    opacity: 0.5;
+  }
+
+  i.fa.fa-spinner.fa-pulse {
+    position: absolute;
+    font-size: 4rem;
+    top: 30%; left: 50%;
+    margin-left: -2rem;
+  }
+}
+
+.axis text {
+  font-size: 10px;
+  fill: #666;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #dfdfdf;
+  shape-rendering: crispEdges;
+}
+
+.axis-label {
+  position: absolute;
+  @include overflow-ellipsis;
+
+  &.left {
+    top: 0;
+    left: 0;
+    right: 40px;
+    padding: 0 4px;
+  }
+
+  &.bottom {
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+}
