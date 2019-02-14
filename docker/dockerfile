@@ -1,11 +1,17 @@
 # Use an official Python runtime as a parent image
 FROM python:3.7-slim
-LABEL maintainer="Shuixi Li"
+LABEL maintainer="Shuixi.Li"
+
+# Never prompts the user for choices on installation/configuration of packages
+ENV DEBIAN_FRONTEND noninteractive
+ENV TERM linux
 
 # Airflow
 ARG AIRFLOW_VERSION=1.10.2
-ARG AIRFLOW_HOME=/Users/lanceli/airflow/airflow_env/bin/airflow
-
+ARG AIRFLOW_HOME=/usr/local/airflow
+ARG AIRFLOW_DEPS=""
+ARG PYTHON_DEPS=""
+ENV AIRFLOW_GPL_UNIDECODE yes
 ENV SLUGIFY_USES_TEXT_UNIDECODE=yes
 
 # Define en_US.
@@ -61,20 +67,12 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base
 
-# Set the working directory to /app
-WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+COPY script/entrypoint.sh /entrypoint.sh
+COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+EXPOSE 8080 5555 8793
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
-
-# Define environment variable
-ENV NAME World
-
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+WORKDIR ${AIRFLOW_HOME}
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["webserver"] # set default arg for entrypoint
