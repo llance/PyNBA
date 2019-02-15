@@ -5,7 +5,8 @@ nba_api/
 .DS_Store
 
 **/*.log
+**/*.pyc:wq
 
 pynba_backend/.idea
-
+pynba_frontend/.idea/
 node_modules
