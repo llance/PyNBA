@@ -60,7 +60,7 @@ class PostgresOperator(BaseOperator):
     #         with self.db_session() as db:
     #             load_playercareerstats(playerstats.get_dict()['resultSets'][0]['rowSet'], db, '{{(execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%dT00:00:00.000")}}')
 
-    def execute(self)
+    def execute(self):
         try:
             with self.db_session() as db:
                 player_team_by_season = db.execute("SELECT * FROM nba_api.playercareerstats WHERE player_id NOT IN (SELECT DISTINCT player_id FROM" +
