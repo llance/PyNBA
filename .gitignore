@@ -5,7 +5,7 @@ nba_api/
 .DS_Store
 
 **/*.log
-**/*.pyc:wq
+**/*.pyc
 
 pynba_backend/.idea
 pynba_frontend/.idea/

@@ -34,3 +34,67 @@ File Path                                                                       
 [2019-01-28 10:18:42,328] {dag_processing.py:708} INFO - Exiting gracefully upon receiving signal 2
 [2019-01-28 10:18:42,338] {dag_processing.py:708} INFO - Exiting gracefully upon receiving signal 15
 [2019-01-28 10:18:42,346] {dag_processing.py:1222} INFO - Waiting up to 5 seconds for processes to exit...
+[2019-02-14 21:53:03,940] {dag_processing.py:724} INFO - Processing files using up to 1 processes at a time 
+[2019-02-14 21:53:03,941] {dag_processing.py:726} INFO - Process each file at most once every 0 seconds
+[2019-02-14 21:53:03,942] {dag_processing.py:728} INFO - Checking for new files in /Users/lanceli/airflow/dags every 300 seconds
+[2019-02-14 21:53:03,953] {dag_processing.py:936} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                                                                                         PID  Runtime    Last Runtime    Last Run
+------------------------------------------------------------------------------------------------------------------------------  -----  ---------  --------------  ----------
+/Users/lanceli/airflow/dags/nba_to_warehouse.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_latest_only.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_python_operator.py                  72143  0.00s
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/test_utils.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_bash_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_short_circuit_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_branch_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_docker_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/tutorial.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/docker_copy_data.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_passing_params_via_test_command.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_xcom.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_http_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_skip_dag.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_trigger_target_dag.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_branch_python_dop_operator_3.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_subdag_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_trigger_controller_dag.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/subdags/subdag.py
+================================================================================
+[2019-02-14 21:53:20,297] {dag_processing.py:1157} INFO - Finding 'running' jobs without a recent heartbeat
+[2019-02-14 21:53:20,299] {dag_processing.py:1162} INFO - Failing jobs without heartbeat after 2019-02-15 02:48:20.299196+00:00
+[2019-02-14 21:53:30,336] {dag_processing.py:1157} INFO - Finding 'running' jobs without a recent heartbeat
+[2019-02-14 21:53:30,337] {dag_processing.py:1162} INFO - Failing jobs without heartbeat after 2019-02-15 02:48:30.337814+00:00
+[2019-02-14 21:53:34,359] {dag_processing.py:936} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                                                                                         PID  Runtime    Last Runtime    Last Run
+------------------------------------------------------------------------------------------------------------------------------  -----  ---------  --------------  -------------------
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_latest_only.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_branch_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_docker_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/docker_copy_data.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_xcom.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_http_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_skip_dag.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_branch_python_dop_operator_3.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_subdag_operator.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_trigger_controller_dag.py
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/subdags/subdag.py                           72155  0.00s
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_python_operator.py                                    1.97s           2019-02-15T02:53:05
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_bash_operator.py                                      2.00s           2019-02-15T02:53:22
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_trigger_target_dag.py                                 2.00s           2019-02-15T02:53:32
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/tutorial.py                                                   2.00s           2019-02-15T02:53:26
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/test_utils.py                                                 2.00s           2019-02-15T02:53:30
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_passing_params_via_test_command.py                    2.00s           2019-02-15T02:53:28
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_latest_only_with_trigger.py                           2.00s           2019-02-15T02:53:34
+/Users/lanceli/airflow/airflow_env/lib/python3.7/site-packages/airflow/example_dags/example_short_circuit_operator.py                             2.01s           2019-02-15T02:53:24
+/Users/lanceli/airflow/dags/nba_to_warehouse.py                                                                                                   14.37s          2019-02-15T02:53:20
+================================================================================
+[2019-02-14 21:53:37,076] {dag_processing.py:708} INFO - Exiting gracefully upon receiving signal 2
+[2019-02-14 21:53:37,087] {dag_processing.py:708} INFO - Exiting gracefully upon receiving signal 15
+[2019-02-14 21:53:37,096] {dag_processing.py:1222} INFO - Waiting up to 5 seconds for processes to exit...
