@@ -12,18 +12,18 @@ class SQLTemplatedPythonOperator(PythonOperator):
     # Allows sql files to be found
     template_ext = ('.sql',)
 
-# def db_init():
-#     engine.execute('CREATE SCHEMA IF NOT EXISTS source;')
-#     engine.execute('CREATE SCHEMA IF NOT EXISTS staging;')
-#     engine.execute('CREATE SCHEMA IF NOT EXISTS prod;')
-#     Base.metadata.create_all(engine)
-#     BaseProd.metadata.create_all(engine)
-#     # Create dim date table if not already created
-#     if not engine.execute('''SELECT to_regclass('prod.dim_date')''').first()[0]:
-#         fd = open('./dags/sql/create_date_dim.sql', 'r')
-#         sqlfile = fd.read()
-#         fd.close()
-#         engine.execute(sqlfile)
+def db_init():
+    engine.execute('CREATE SCHEMA IF NOT EXISTS nba_api;')
+    #engine.execute('CREATE SCHEMA IF NOT EXISTS staging;')
+    #engine.execute('CREATE SCHEMA IF NOT EXISTS prod;')
+    Base.metadata.create_all(engine)
+    BaseProd.metadata.create_all(engine)
+    # Create dim date table if not already created
+    if not engine.execute('''SELECT to_regclass('prod.dim_date')''').first()[0]:
+        fd = open('./dags/sql/create_tables.sql', 'r')
+        sqlfile = fd.read()
+        fd.close()
+        engine.execute(sqlfile)
 
 # def stage_data(**context):
 #     session = Session()
@@ -83,9 +83,9 @@ dag = DAG('nba_to_postgres',
           catchup=True
          )
 
-# initialize_db = PythonOperator(task_id='initialize_db',
-#                                python_callable=db_init,
-#                                dag=dag)
+initialize_db = PythonOperator(task_id='initialize_db',
+                               python_callable=db_init,
+                               dag=dag)
 
 # start = '{{(execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%dT00:00:00.000")}}'
 # end = '{{execution_date.strftime("%Y-%m-%dT00:00:00.000")}}'
@@ -107,4 +107,4 @@ call_nba_api = PostgresOperator(task_id='call_nba_api',
 
 # initialize_db >> call_meetup_api >> stage_the_data >> load_the_data
 
-call_nba_api
+initialize_db >> call_nba_api

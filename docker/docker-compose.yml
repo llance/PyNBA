@@ -1,16 +1,22 @@
 version: '3'
 services:
   postgres:
-    image: postgres:9.6
+    image: postgres:11.1
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=nba_api
+      - PGDATA=/var/lib/postgresql/data/pgdata
     ports:
       - "5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
 
   webserver:
     image: puckel/docker-airflow:1.10.1
+    restart: unless-stopped
+    depends_on:
+        - postgres
     build:
       context: https://github.com/puckel/docker-airflow.git#1.10.1
       dockerfile: Dockerfile
@@ -23,6 +29,7 @@ services:
       - LOAD_EX=n
       - EXECUTOR=Local
       - FERNET_KEY=jsDPRErfv8Z_eVTnGfF8ywd19j4pyqE3NpdUBA_oRTo=
+      - AIRFLOW_CONN_MEETUP=postgres://${DB_USER}:${PW}@${HOST}:${PORT}/${DB}
     volumes:
       - ./examples/intro-example/dags:/usr/local/airflow/dags
       # Uncomment to include custom plugins
@@ -35,3 +42,17 @@ services:
       interval: 30s
       timeout: 30s
       retries: 3
+
+  scheduler:
+        image: shuixili/nba_airflow
+        restart: unless-stopped
+        depends_on:
+            - webserver
+        environment:
+            - LOAD_EX=n
+            - EXECUTOR=Local
+            - AIRFLOW_CONN_MEETUP=postgres://${DB_USER}:${PW}@${HOST}:${PORT}/${DB}
+            - FERNET_KEY=${FERNET_KEY}
+        volumes:
+            - ./dags:/usr/local/airflow/dags
+        command: scheduler

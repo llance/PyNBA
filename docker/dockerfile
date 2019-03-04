@@ -13,6 +13,8 @@ ARG AIRFLOW_DEPS=""
 ARG PYTHON_DEPS=""
 ENV AIRFLOW_GPL_UNIDECODE yes
 
+
+
 # Define en_US.
 ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -32,6 +34,8 @@ RUN set -ex \
         git \
     ' \
     && apt-get update -yqq \
+    && mkdir -p /usr/share/man/man1 \
+    && mkdir -p /usr/share/man/man7 \
     && apt-get upgrade -yqq \
     && apt-get install -yqq --no-install-recommends \
         $buildDeps \
@@ -66,25 +70,18 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base
 
-COPY script/entrypoint.sh /entrypoint.sh
-COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
 COPY requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
 
-#FROM postgres:11.1
-#ENV POSTGRES_USER postgres
-#ENV POSTGRES_PASSWORD postgres
-#ENV POSTGRES_DB nba_api
-
-COPY script/create_tables.sql /docker-entrypoint-initdb.d/
 
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+COPY dags/ ${AIRFLOW_HOME}/dags
 
 RUN chown -R airflow: ${AIRFLOW_HOME}
 
-EXPOSE 8080 5555 8793
+EXPOSE 8080 5555 8793 
 
 USER airflow
 WORKDIR ${AIRFLOW_HOME}

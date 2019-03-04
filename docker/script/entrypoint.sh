@@ -2,7 +2,7 @@
 
 TRY_LOOP="20"
 : "${POSTGRES_HOST:="postgres"}"
-: "${POSTGRES_PORT:="5432"}"
+: "${POSTGRES_PORT:="5000"}"
 : "${POSTGRES_USER:="postgres"}"
 : "${POSTGRES_PASSWORD:="postgres"}"
 : "${POSTGRES_DB:="nba_api"}"
@@ -60,9 +60,11 @@ fi
 case "$1" in
   webserver)
     airflow initdb
+    airflow connections --add --conn_id=nba_postgres --conn_type=postgres --conn_host=localhost --conn_schema=postgres --conn_login=postgres --conn_password=postgres --conn_port=5000
     if [ "$AIRFLOW__CORE__EXECUTOR" = "LocalExecutor" ]; then
       # With the "Local" executor it should all run in one container.
       airflow scheduler &
+      postgresql start &
     fi
     exec airflow webserver
     ;;
@@ -82,3 +84,5 @@ case "$1" in
     exec "$@"
     ;;
 esac
+
+

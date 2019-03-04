@@ -1,4 +1,5 @@
 CREATE USER postgres;
+ALTER USER postgres with encrypted password 'postgres';
 CREATE DATABASE postgres;
 CREATE SCHEMA nba_api;
 
