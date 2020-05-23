@@ -1,8 +1,9 @@
 airflow/
-airflow_env/
+PyNBAEnv/
 nba_api/
 
 .DS_Store
+.idea/
 
 **/*.log
 **/*.pyc
